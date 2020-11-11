@@ -7,10 +7,10 @@
     </v-row>
     <v-row>
       <v-col md="4">
-        <Menu />
+        <Menu :menuSelected="menuSelected" :switchMenu="switchMenu" />
       </v-col>
       <v-col md="20">
-        <TopNap />
+        <TopList :menuSelected="menuSelected" />
       </v-col>
     </v-row>
   </v-container>
@@ -18,15 +18,20 @@
 
 <script>
 import Menu from "./Menu";
-import TopNap from "./TopNap";
+import TopList from "./TopList";
 export default {
   name: "Index",
   data: () => ({
-    demo: "",
+    menuSelected: 1,
   }),
+  methods: {
+    switchMenu(e) {
+      this.menuSelected = e;
+    },
+  },
   components: {
     Menu,
-    TopNap,
+    TopList,
   },
 };
 </script>

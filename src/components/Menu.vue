@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto" max-width="100%" tile>
     <v-list rounded>
-      <v-subheader class='font-weight-bold'>REPORTS</v-subheader>
-      <v-list-item-group v-model="selectedItem" color="primary">
-        <v-list-item v-for="(item, i) in items" :key="i">
+      <v-subheader class="font-weight-bold">REPORTS</v-subheader>
+      <v-list-item-group :value="menuSelected" color="primary">
+        <v-list-item v-for="(item, i) in items" :key="i" @click="switchMenu(i)">
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
@@ -18,14 +18,20 @@
 
 <script>
 export default {
+  props: {
+    menuSelected: Number,
+    switchMenu: Function,
+  },
   data: () => ({
-    selectedItem: 0,
     items: [
       { text: "Top Nạp", icon: "mdi-alpha-c-circle-outline" },
       { text: "Top Level", icon: "mdi-alpha-l-circle-outline" },
       { text: "Real-Time", icon: "mdi-clock" },
     ],
   }),
+  methods: {
+
+  },
 };
 </script>
 
