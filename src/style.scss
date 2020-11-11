@@ -1,0 +1,9 @@
+$large-deskop: 1400px;
+$mobile: 992px;
+$xs: 576px;
+$radius: 6px;
+@mixin large-desktop {
+  @media (min-width:#{$large-deskop}) {
+    @content;
+  }
+}

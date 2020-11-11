@@ -1,0 +1,6 @@
+@import "@/style.scss";
+.app-content {
+  @include large-desktop {
+    max-width: 70%;
+  }
+}
