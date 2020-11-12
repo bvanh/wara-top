@@ -13,13 +13,13 @@
         <h2 class="shrink mt-1 hidden-sm-and-down">WARA</h2>
       </div>
       <v-spacer></v-spacer>
-      <v-btn
+      <!-- <v-btn
         href="https://dl.clappigames.com/wara/WARA.VN-release_1016_1.apk"
         text
       >
         <span class="mr-2">DOWNLOAD</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
     <v-main>
