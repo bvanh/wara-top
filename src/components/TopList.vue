@@ -74,6 +74,6 @@ export default {
 <style lang='scss'>
 .v-pagination {
   justify-content: flex-end !important;
-  margin-top: 1rem;
+  margin-top: 1rem !important;
 }
 </style>
