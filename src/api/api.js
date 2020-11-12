@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = {
-  ROOT: "http://localhost:5000",
+  ROOT: "http://171.244.141.224:5000",
   TOPLEVEL: "/toplevel",
   TOPCASH: "/topcharges",
 };
