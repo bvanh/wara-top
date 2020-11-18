@@ -3,8 +3,9 @@ const headersLevel = [
     text: "Game UserId",
     align: "start",
     sortable: false,
-    value: "userid",
+    value: "game_user_id",
   },
+  { text: "Character", value: "nickname" },
   { text: "Level", value: "level" },
 ];
 const headersNap = [
@@ -12,8 +13,10 @@ const headersNap = [
     text: "Game UserId",
     align: "start",
     sortable: false,
-    value: "userid",
+    value: "game_user_id",
   },
-  { text: "Level", value: "level" },
+  { text: "Character", value: "nickname" },
+  { text: "Total Cash", value: "total_cash" },
+  { text: "Times", value: "count" },
 ];
 export { headersLevel, headersNap };

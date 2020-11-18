@@ -1,17 +1,29 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="data"
-    :items-per-page="10"
-    class="elevation-1"
-  ></v-data-table>
+  <div>
+    <v-data-table
+      :headers="headers"
+      :items="data"
+      :items-per-page="10"
+      :page="page"
+      class="elevation-1"
+      hide-default-footer
+    >
+    </v-data-table>
+    <v-pagination
+      class="pagination"
+      v-model="page"
+      :length="data.length / 10"
+      circle
+      @input="switchPage"
+    ></v-pagination>
+  </div>
 </template>
 
 <script>
-import { getTopLevel } from "@/api/request";
-import { headersLevel } from "./constant";
+import { getTopList } from "@/api/request";
+import { headersLevel, headersNap } from "./constant";
 import { api } from "@/api/api";
-const { TOPLEVEL } = api;
+const { TOPLEVEL, TOPCASH } = api;
 export default {
   props: {
     menuSelected: Number,
@@ -20,7 +32,13 @@ export default {
     return {
       headers: [],
       data: [],
+      page: 1,
     };
+  },
+  methods: {
+    switchPage(e) {
+      this.page = e;
+    },
   },
   watch: {
     menuSelected: {
@@ -28,7 +46,10 @@ export default {
       handler() {
         switch (this.menuSelected) {
           case 1:
-            getTopLevel(this, TOPLEVEL, headersLevel);
+            getTopList(this, TOPLEVEL, headersLevel);
+            break;
+          case 0:
+            getTopList(this, TOPCASH, headersNap);
             break;
           default:
             this.data = [];
@@ -38,10 +59,21 @@ export default {
     },
   },
   created() {
-    getTopLevel(this, TOPLEVEL, headersLevel);
+    switch (this.menuSelected) {
+      case 1:
+        getTopList(this, TOPLEVEL, headersLevel);
+        break;
+      default:
+        this.data = [];
+        break;
+    }
   },
 };
 </script>
 
-<style>
+<style lang='scss'>
+.v-pagination {
+  justify-content: flex-end !important;
+  margin-top: 1rem !important;
+}
 </style>
