@@ -15,7 +15,6 @@
     </v-list>
   </v-card>
 </template>
-
 <script>
 export default {
   props: {
@@ -26,7 +25,7 @@ export default {
     items: [
       { text: "Top Nạp", icon: "mdi-alpha-c-circle-outline" },
       { text: "Top Level", icon: "mdi-alpha-l-circle-outline" },
-      //{ text: "Real-Time", icon: "mdi-clock" },
+      { text: "Thông tin User", icon: "mdi-alpha-i-circle-outline" },
     ],
   }),
   methods: {

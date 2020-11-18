@@ -10,7 +10,8 @@
         <Menu :menuSelected="menuSelected" :switchMenu="switchMenu" />
       </v-col>
       <v-col md="20">
-        <TopList :menuSelected="menuSelected" />
+        <TopList :menuSelected="menuSelected" v-if="menuSelected !== 2" />
+        <Search v-if="menuSelected === 2" />
       </v-col>
     </v-row>
   </v-container>
@@ -19,6 +20,7 @@
 <script>
 import Menu from "./Menu";
 import TopList from "./TopList";
+import Search from "./Search";
 export default {
   name: "Index",
   data: () => ({
@@ -32,6 +34,7 @@ export default {
   components: {
     Menu,
     TopList,
+    Search,
   },
 };
 </script>

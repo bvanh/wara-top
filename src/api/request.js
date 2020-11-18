@@ -1,12 +1,13 @@
 import { api, baseApi } from "./api";
-const { TOPCASH } = api;
+//import qs from "qs";
+const { TOPCASH, USER_INFO } = api;
 const getTopList = (thisObj, api, headersTable) => {
   //console.log(params);
   //let listUsers;
   return baseApi
     .get(api)
     .then((res) => {
-      console.log(res)
+      console.log(res);
       if (api === TOPCASH) {
         const dataCash = res.data.sort(
           (a, b) => Number(b.total_cash) - Number(a.total_cash)
@@ -22,4 +23,20 @@ const getTopList = (thisObj, api, headersTable) => {
       console.log(err.response);
     });
 };
-export { getTopList };
+const getUserInfo = (thisObj, gameUserId) => {
+  return baseApi
+    .get(USER_INFO, {
+      params: {
+        gameUserId: gameUserId,
+      },
+    })
+    .then((res) => {
+      //console.log(res);
+      const { username } = res.data;
+      thisObj.username = username;
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+export { getTopList, getUserInfo };
