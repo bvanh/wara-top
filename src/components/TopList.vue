@@ -38,14 +38,7 @@ export default {
     },
   },
   created() {
-    switch (this.menuSelected) {
-      case 1:
-        getTopLevel(this, TOPLEVEL, headersLevel);
-        break;
-      default:
-        this.data = [];
-        break;
-    }
+    getTopLevel(this, TOPLEVEL, headersLevel);
   },
 };
 </script>
