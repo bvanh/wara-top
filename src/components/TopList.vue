@@ -13,7 +13,7 @@
       @item-expanded="loadDetails"
       :expanded="[]"
     >
-      <template v-slot:expanded-item="{ headers}" v-show="menuSelected === 0">
+      <template v-slot:expanded-item="{ headers }" v-show="menuSelected === 0">
         <td :colspan="headers.length" style="padding: 1rem">
           <v-simple-table fixed-header height="300px">
             <template v-slot:default>
@@ -63,7 +63,7 @@ export default {
       isExpand: true,
       headers: [],
       headerNapByUser: headersNapByUser,
-      detailCharges:[],
+      detailCharges: [],
       data: [],
       page: 1,
     };
