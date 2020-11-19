@@ -45,14 +45,13 @@ export default {
       deep: true,
       handler() {
         switch (this.menuSelected) {
-          case 1:
-            getTopList(this, TOPLEVEL, headersLevel);
-            break;
           case 0:
             getTopList(this, TOPCASH, headersNap);
-            break;
+            return;
+          case 1:
+            getTopList(this, TOPLEVEL, headersLevel);
+            return;
           default:
-            this.data = [];
             break;
         }
       },
@@ -60,8 +59,8 @@ export default {
   },
   created() {
     switch (this.menuSelected) {
-      case 1:
-        getTopList(this, TOPLEVEL, headersLevel);
+      case 0:
+        getTopList(this, TOPCASH, headersNap);
         break;
       default:
         this.data = [];

@@ -10,7 +10,7 @@
         <Menu :menuSelected="menuSelected" :switchMenu="switchMenu" />
       </v-col>
       <v-col md="20">
-        <TopList :menuSelected="menuSelected" v-if="menuSelected !== 2" />
+        <TopList :menuSelected="menuSelected" v-show="menuSelected < 2" />
         <Search v-if="menuSelected === 2" />
       </v-col>
     </v-row>
@@ -24,10 +24,11 @@ import Search from "./Search";
 export default {
   name: "Index",
   data: () => ({
-    menuSelected: 1,
+    menuSelected: 0,
   }),
   methods: {
     switchMenu(e) {
+      console.log(e);
       this.menuSelected = e;
     },
   },

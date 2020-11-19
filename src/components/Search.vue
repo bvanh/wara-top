@@ -7,6 +7,7 @@
       :error-messages="errorMessage"
       @input="getGameUserId"
       @mousedown="resetInput"
+      @keyup.enter="getUserInfo"
     ></v-text-field>
     <v-btn
       depressed

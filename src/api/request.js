@@ -7,7 +7,7 @@ const getTopList = (thisObj, api, headersTable) => {
   return baseApi
     .get(api)
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       if (api === TOPCASH) {
         const dataCash = res.data.sort(
           (a, b) => Number(b.total_cash) - Number(a.total_cash)
