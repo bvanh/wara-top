@@ -72,11 +72,8 @@ export default {
     switchPage(e) {
       this.page = e;
     },
-    select(e) {
-      console.log(e);
-    },
     loadDetails({ item }) {
-      console.log(item);
+      //console.log(item);
       getChargesByUser(this, item.game_user_id);
     },
   },
