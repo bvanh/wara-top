@@ -2,13 +2,25 @@
   <div>
     <v-text-field
       :value="gameUserId"
+      :rules="rules"
       label="Nhập game user id..."
-      @change="getGameUserId"
+      :error-messages="errorMessage"
+      @input="getGameUserId"
+      @mousedown="resetInput"
     ></v-text-field>
-    <v-btn depressed color="error" @click="getUserInfo"> Search </v-btn>
+    <v-btn
+      depressed
+      color="error"
+      @click="getUserInfo"
+      style="margin-top: 0.3rem"
+    >
+      Search
+    </v-btn>
     <div class="user-info">
       <p><span class="title">User name: </span>{{ username }}</p>
-      <p><span class="title">Loại tài khoản: </span></p>
+      <p>
+        <span class="title">Loại tài khoản: </span>{{ checkTypeUser(username) }}
+      </p>
     </div>
   </div>
 </template>
@@ -17,6 +29,8 @@
 import { getUserInfo } from "../api/request";
 export default {
   data: () => ({
+    rules: [(value) => !!value || "Required."],
+    errorMessage: null,
     gameUserId: "",
     username: "",
   }),
@@ -26,6 +40,24 @@ export default {
     },
     getUserInfo() {
       getUserInfo(this, this.getGameUserId);
+    },
+    checkTypeUser(val) {
+      const type = val.slice(0, 3);
+      if (type !== "") {
+        switch (type) {
+          case "*gg":
+            return "Tài khoản Google.";
+          case "*fb":
+            return "Tài khoản Facebook.";
+          case "*gu":
+            return "Tài khoản Khách.";
+          default:
+            return "Tài khoản Clappigame.";
+        }
+      }
+    },
+    resetInput() {
+      this.errorMessage = null;
     },
   },
 };

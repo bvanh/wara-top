@@ -36,7 +36,8 @@ const getUserInfo = (thisObj, gameUserId) => {
       thisObj.username = username;
     })
     .catch((err) => {
-      console.log(err.response);
+      const { message } = err.response.data;
+      thisObj.errorMessage = message;
     });
 };
 export { getTopList, getUserInfo };
