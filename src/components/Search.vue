@@ -37,10 +37,10 @@ export default {
   }),
   methods: {
     getGameUserId(e) {
-      this.getGameUserId = e;
+      this.gameUserId = e;
     },
     getUserInfo() {
-      getUserInfo(this, this.getGameUserId);
+      getUserInfo(this, this.gameUserId);
     },
     checkTypeUser(val) {
       const type = val.slice(0, 3);
@@ -50,6 +50,8 @@ export default {
             return "Tài khoản Google.";
           case "*fb":
             return "Tài khoản Facebook.";
+          case "*ap":
+            return "Tài khoản Apple.";
           case "*gu":
             return "Tài khoản Khách.";
           default:

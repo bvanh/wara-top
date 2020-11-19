@@ -25,10 +25,10 @@ export default {
   name: "Index",
   data: () => ({
     menuSelected: 0,
+    isExpand: false,
   }),
   methods: {
     switchMenu(e) {
-      console.log(e);
       this.menuSelected = e;
     },
   },

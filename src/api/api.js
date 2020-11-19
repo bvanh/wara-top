@@ -1,9 +1,10 @@
 import axios from "axios";
 const api = {
-  ROOT: "http://171.244.141.224:5000",
+  ROOT: "http://localhost:5000",
   TOPLEVEL: "/toplevel",
   TOPCASH: "/topcharges",
   USER_INFO: "/getuserinfo",
+  CHARGES_BY_USER:"/chargesbyuser"
 };
 const baseApi = axios.create({
   baseURL: api.ROOT,

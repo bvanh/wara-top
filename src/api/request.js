@@ -1,6 +1,6 @@
 import { api, baseApi } from "./api";
 //import qs from "qs";
-const { TOPCASH, USER_INFO } = api;
+const { TOPCASH, USER_INFO, CHARGES_BY_USER } = api;
 const getTopList = (thisObj, api, headersTable) => {
   //console.log(params);
   //let listUsers;
@@ -9,10 +9,7 @@ const getTopList = (thisObj, api, headersTable) => {
     .then((res) => {
       //console.log(res);
       if (api === TOPCASH) {
-        const dataCash = res.data.sort(
-          (a, b) => Number(b.total_cash) - Number(a.total_cash)
-        );
-        thisObj.data = dataCash;
+        thisObj.data = res.data;
       } else {
         thisObj.data = res.data;
       }
@@ -38,6 +35,25 @@ const getUserInfo = (thisObj, gameUserId) => {
     .catch((err) => {
       const { message } = err.response.data;
       thisObj.errorMessage = message;
+      thisObj.username = "";
     });
 };
-export { getTopList, getUserInfo };
+const getChargesByUser = (thisObj, gameUserId) => {
+  return baseApi
+    .get(CHARGES_BY_USER, {
+      params: {
+        gameUserId: gameUserId,
+      },
+    })
+    .then((res) => {
+     // console.log(res);
+      thisObj.detailCharges = res.data;
+    })
+    .catch((err) => {
+      //  const { message } = err.response.data;
+       console.log(err)
+      // thisObj.errorMessage = message;
+      // thisObj.username = "";
+    });
+};
+export { getTopList, getUserInfo, getChargesByUser };

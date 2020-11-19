@@ -18,5 +18,16 @@ const headersNap = [
   { text: "Character", value: "nickname" },
   { text: "Total Cash", value: "total_cash" },
   { text: "Times", value: "count" },
+  { text: "", value: "data-table-expand" },
 ];
-export { headersLevel, headersNap };
+const headersNapByUser = [
+  {
+    text: "",
+    align: "start",
+    value: "",
+  },
+  { text: "Item", value: "ref_product_name" },
+  { text: "Cash", value: "cash" },
+  { text: "Times", value: "times" },
+];
+export { headersLevel, headersNap, headersNapByUser };

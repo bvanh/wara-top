@@ -5,9 +5,39 @@
       :items="data"
       :items-per-page="10"
       :page="page"
+      item-key="game_user_id"
       class="elevation-1"
       hide-default-footer
+      :show-expand="menuSelected == 0"
+      :single-expand="true"
+      @item-expanded="loadDetails"
+      :expanded="[]"
     >
+      <template v-slot:expanded-item="{ headers}" v-show="menuSelected === 0">
+        <td :colspan="headers.length" style="padding: 1rem">
+          <v-simple-table fixed-header height="300px">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Cash</th>
+                  <th>Times</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="dessert in detailCharges"
+                  :key="dessert.ref_product_name"
+                >
+                  <td>{{ dessert.ref_product_name }}</td>
+                  <td>{{ dessert.cash }}</td>
+                  <td>{{ dessert.times }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </td>
+      </template>
     </v-data-table>
     <v-pagination
       class="pagination"
@@ -20,8 +50,8 @@
 </template>
 
 <script>
-import { getTopList } from "@/api/request";
-import { headersLevel, headersNap } from "./constant";
+import { getTopList, getChargesByUser } from "@/api/request";
+import { headersLevel, headersNap, headersNapByUser } from "./constant";
 import { api } from "@/api/api";
 const { TOPLEVEL, TOPCASH } = api;
 export default {
@@ -30,7 +60,10 @@ export default {
   },
   data() {
     return {
+      isExpand: true,
       headers: [],
+      headerNapByUser: headersNapByUser,
+      detailCharges:[],
       data: [],
       page: 1,
     };
@@ -38,6 +71,13 @@ export default {
   methods: {
     switchPage(e) {
       this.page = e;
+    },
+    select(e) {
+      console.log(e);
+    },
+    loadDetails({ item }) {
+      console.log(item);
+      getChargesByUser(this, item.game_user_id);
     },
   },
   watch: {
