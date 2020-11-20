@@ -13,6 +13,9 @@
       @item-expanded="loadDetails"
       :expanded="[]"
     >
+      <template v-slot:[`item.total_cash`]="{ item }">
+        {{ Number(item.total_cash).toLocaleString() }} VNĐ
+      </template>
       <template v-slot:expanded-item="{ headers }" v-show="menuSelected === 0">
         <td :colspan="headers.length" style="padding: 1rem">
           <v-simple-table fixed-header height="300px">
@@ -20,7 +23,7 @@
               <thead>
                 <tr>
                   <th>Item</th>
-                  <th>Cash</th>
+                  <th>Value</th>
                   <th>Times</th>
                 </tr>
               </thead>
@@ -30,7 +33,7 @@
                   :key="dessert.ref_product_name"
                 >
                   <td>{{ dessert.ref_product_name }}</td>
-                  <td>{{ dessert.cash }}</td>
+                  <td>{{ dessert.cash.toLocaleString() }} VNĐ</td>
                   <td>{{ dessert.times }}</td>
                 </tr>
               </tbody>
